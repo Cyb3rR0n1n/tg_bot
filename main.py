@@ -1,4 +1,5 @@
 import asyncio
+
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 
@@ -13,14 +14,9 @@ async def start_cmd(message: types.Message):
 async def main():
     await dp.start_polling(bot)
 
-asyncio.run(main())
 
-
-
-# echo "# tg_bot" >> README.md
-# git init
-# git add README.md
-# git commit -m "first commit"
-# git branch -M main
-# git remote add origin https://github.com/Cyb3rR0n1n/tg_bot.git
-# git push -u origin main
+if __name__ == '__main__':
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print('Exit')
