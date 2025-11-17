@@ -1,9 +1,8 @@
-# import logging # логирование на время раработки
+import logging # логирование на время раработки
 import asyncio
 import os
 
-from aiogram import Bot, Dispatcher, types
-from aiogram.filters import CommandStart
+from aiogram import Bot, Dispatcher
 
 from apps.handlers import router
 
@@ -11,7 +10,7 @@ from dotenv import find_dotenv, load_dotenv # библиотеки для хра
 
 load_dotenv(find_dotenv()) # найти файл в виртуальном окружении и загрузить
 
-ALLOWED_UPDATES = ['message', 'edited_message'] # типы обрабатываемых updates
+# ALLOWED_UPDATES = ['message', 'edited_message'] # типы обрабатываемых updates
 
 bot = Bot(token=os.getenv('TOKEN')) # через библиотеку os найти файл с токеном
 dp = Dispatcher() # класс обрабатывает сообщения которые получает Бот
@@ -19,10 +18,11 @@ dp = Dispatcher() # класс обрабатывает сообщения ко�
 
 async def main():
     dp.include_router(router) # from apps.handlers import router
-    await dp.start_polling(bot, allowed_updates=ALLOWED_UPDATES) # опрашивает сервер на наличие НОВЫХ сообщений
+    # await dp.start_polling(bot, allowed_updates=ALLOWED_UPDATES) # опрашивает сервер на наличие НОВЫХ сообщений
+    await dp.start_polling(bot) # опрашивает сервер на наличие НОВЫХ сообщений
 
 if __name__ == '__main__':
-    # logging.basicConfig(level=logging.INFO) # логирование на время разработки
+    logging.basicConfig(level=logging.INFO) # логирование на время разработки
     
     # для устранения except KeyboardInterrupt при завершении работы бота через Ctrl + C
     try:
