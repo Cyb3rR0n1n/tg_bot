@@ -1,10 +1,14 @@
 from aiogram import F, Router, types
 from aiogram.filters import CommandStart
 
+import apps.keyboards as kb
+
 
 router = Router()
 
 @router.message(CommandStart())
 async def start_cmd(message: types.Message): # анотируем типы для удобства работы с методами и св-ми
     """метод answer отвечает за ответ (можно ответить документом) await message.answer_document"""
-    await message.answer('Привет!')
+    await message.answer(f'Привет!', reply_markup=kb.main)
+    # await message.reply(text='Привет!', reply_markup=kb.main)
+    # await message.answer('Привет!')
